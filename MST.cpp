@@ -35,12 +35,12 @@ struct UF{
     }
 };
 int main(){
-    int n,m,x;scanf("%d %d %d", &n, &m, &x);
+    int n,m,x; cin >> n >> m >> x;
     vector<pair<int,pair<int,int> > >arestas;
     for(int i=0;i<m;i++){
         int a,b,p;
-        scanf("%d %d %d", &a, &b, &p);
-        arestas.push_back(make_pair(p,make_pair(a,b)));
+        cin >> a >> b >> p;
+        arestas.push_back({p,{a,b}});
     }
     sort(arestas.begin(),arestas.end());
     UF arvore(n+1);
