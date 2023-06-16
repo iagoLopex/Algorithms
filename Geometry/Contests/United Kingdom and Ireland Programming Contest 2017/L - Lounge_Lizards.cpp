@@ -78,11 +78,6 @@ int main(){
 		line k(t, c);
 		
 		if(k.A && k.B){
-			
-			//~ cout << "\nEquacao Ge: " << k.A << "x " << k.B << "y " << k.C << endl;
-			//~ cout << "\nEquacao Red: " << k.a << "x " << k.b << endl;
-			//~ cout << "entre (" << c.x << "," << c.y << ")" << endl;
-			
 			if(!coef[{k.a, k.b}]){
 				
 				coef[{k.a, k.b}]=1;
