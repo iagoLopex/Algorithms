@@ -72,10 +72,30 @@ struct segment{
 	segment(Point<F> &x, Point<F> &y){ k=line<F>(x, y); u=x; v=y; }
 };
 
+void proj(line<double>k, Point<double> st, Point<double> &ans){
+    
+    line<double>h(k.num, k.den, st);
+    if(k.B == 0){
+        ans.x = k.C; ans.y = st.y;
+    }
+    else{
+        if(k.A==0){
+            ans.x = st.x; ans.y = -(k.C/k.A);
+        }
+        else{
+            ans.x = (k.b-h.b)/(h.a-k.a);
+            ans.y = h.a*ans.x+h.b;
+        }
+    }
+}
+
 int main(){
 	
 	Point<double>start;
-	while(cin>>start){
+	double a, b;
+	while(cin>>a){
+	    cin>>b;
+	    start = Point<double>(a, b);
 		int n; cin>>n;
 		vector<Point<double>>vec(n+1);
 		vector<segment<double>>seg;
@@ -84,9 +104,32 @@ int main(){
 			cin>>vec[i];
 			seg.emplace_back(segment<double>(vec[i], vec[i-1]));
 		}
-		
-		for(){
+		double ans = INT_MAX;
+		Point<double>resp;
+		for(int i=0; i<n+1; i++){
 			
+			Point<double>at;
+			proj(seg[i].k, start, at);
+			
+			if(ang(at, seg[i].u, seg[i].v)==180){
+			    cout << at << " " << i << endl;
+			    
+			    if(ans < dist(at, start)){
+			        ans = dist(at, start);
+			        resp = at;
+			    }
+			}
+			else{
+			    if(ans < dist(start, seg[i].u)){
+			        ans = dist(start, seg[i].u);
+			        resp = seg[i].u;
+			    }
+			    if(ans < dist(start, seg[i].v)){
+			        ans = dist(start, seg[i].v);
+			        resp = seg[i].v;
+			    }
+			}
 		}
+		cout << resp << endl;
 	}
 }
