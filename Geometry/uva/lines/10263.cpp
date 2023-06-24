@@ -100,14 +100,14 @@ void proj(line<double>k, Point<double> st, Point<double> &ans){
 
 int main(){
 	
-	ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-	//~ freopen("out", "w", stdout);
+	//~ ios_base::sync_with_stdio(false);
+    //~ cin.tie(NULL);
+	freopen("out", "w", stdout);
 	
 	Point<double>start;
 	double a, b;
-	while(cin>>a){
-	    cin>>b;
+	while(cin>>a>>b){
+		
 	    start = Point<double>(a, b);
 		int n; cin>>n;
 		vector<Point<double>>vec(n+1);
@@ -142,7 +142,14 @@ int main(){
 			}
 		}
 		cout << fixed << setprecision(4);
-		cout << (!resp.x ? 0.0000 : resp.x) << endl;
-		cout << (!resp.y ? 0.0000 : resp.y) << endl;
+		
+		if(n==0){
+			cout << vec[0].x << endl;
+			cout << vec[0].y << endl;
+		}
+		else{
+			cout << (!resp.x ? 0.0000 : resp.x) << endl;
+			cout << (!resp.y ? 0.0000 : resp.y) << endl;
+		}
 	}
 }
