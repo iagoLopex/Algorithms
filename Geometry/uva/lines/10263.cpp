@@ -13,6 +13,7 @@ struct Point{
 	bool operator < (const Point &u) const{ if(fabs(x-u.x) < eps){ return y < u.y; }else{ return x < u.x; } }
 	bool operator > (const Point &u) const{ if(fabs(x-u.x) < eps){ return y > u.y; }else{ return x > u.x; } }
 	bool operator == (const Point &u) const{ return (fabs(x-u.x) < eps && fabs(y-u.y) < eps); }
+	bool operator = (const Point &u){ x=u.x; y=u.y; return true; }
 	
 	friend istream & operator >>(istream &in, Point &u){ return in >> u.x >> u.y; }
 	friend ostream & operator <<(ostream &out, Point &u){ return out << " P(" << u.x << "," << u.y << ") "; }
@@ -56,11 +57,19 @@ double dist(const Point<double>&a, const Point<double>&b){
 	return sqrt((a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y));
 }
 
-double ang(const Point<double> &a, const Point<double> &b, const Point<double> &c){
+float ang(const Point<double> &a, const Point<double> &b, const Point<double> &c){
 	double d1, d2, d3;
+	//~ cout << fixed << setprecision(10);
 	d1=dist(a, b); d2=dist(a, c); d3=dist(b, c);
- 	double x = acos(((d1*d1)+(d2*d2)-(d3*d3))/(2*d1*d2))*180/pi;
-	return x;
+	//~ if(a.x == -0.5 && a.y == 1.5){
+		
+		//~ cout << d1 << " d2 " << d2 << " d3 " << d3 << endl; 
+		
+		//~ cout << ((d1*d1)+(d2*d2)-(d3*d3)) << " " << (2*d1*d2) << "  " << ((d1*d1)+(d2*d2)-(d3*d3))/(2*d1*d2) << endl;
+	//~ }
+	float h = ((d1*d1)+(d2*d2)-(d3*d3))/(2*d1*d2);
+ 	float k = acos(h)*180/pi;
+	return k;
 }
 
 template<class F>
@@ -75,12 +84,12 @@ struct segment{
 void proj(line<double>k, Point<double> st, Point<double> &ans){
     
     line<double>h(k.num, k.den, st);
-    if(k.B == 0){
-        ans.x = k.C; ans.y = st.y;
+    if(k.A == 0){
+        ans.x = st.x; ans.y = k.C;
     }
     else{
-        if(k.A==0){
-            ans.x = st.x; ans.y = -(k.C/k.A);
+        if(k.B==0){
+            ans.x = -(k.C/k.A); ans.y = st.y;
         }
         else{
             ans.x = (k.b-h.b)/(h.a-k.a);
@@ -90,6 +99,10 @@ void proj(line<double>k, Point<double> st, Point<double> &ans){
 }
 
 int main(){
+	
+	ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+	//~ freopen("out", "w", stdout);
 	
 	Point<double>start;
 	double a, b;
@@ -106,30 +119,30 @@ int main(){
 		}
 		double ans = INT_MAX;
 		Point<double>resp;
-		for(int i=0; i<n+1; i++){
+		for(int i=0; i<n; i++){
 			
 			Point<double>at;
 			proj(seg[i].k, start, at);
-			
-			if(ang(at, seg[i].u, seg[i].v)==180){
-			    cout << at << " " << i << endl;
-			    
-			    if(ans < dist(at, start)){
+
+			if((int)ang(at, seg[i].u, seg[i].v)==180){
+			    if(ans > dist(at, start)){
 			        ans = dist(at, start);
 			        resp = at;
 			    }
 			}
 			else{
-			    if(ans < dist(start, seg[i].u)){
+			    if(ans > dist(start, seg[i].u)){
 			        ans = dist(start, seg[i].u);
 			        resp = seg[i].u;
 			    }
-			    if(ans < dist(start, seg[i].v)){
+			    if(ans > dist(start, seg[i].v)){
 			        ans = dist(start, seg[i].v);
 			        resp = seg[i].v;
 			    }
 			}
 		}
-		cout << resp << endl;
+		cout << fixed << setprecision(4);
+		cout << (!resp.x ? 0.0000 : resp.x) << endl;
+		cout << (!resp.y ? 0.0000 : resp.y) << endl;
 	}
 }
