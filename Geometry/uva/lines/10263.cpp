@@ -59,14 +59,7 @@ double dist(const Point<double>&a, const Point<double>&b){
 
 float ang(const Point<double> &a, const Point<double> &b, const Point<double> &c){
 	double d1, d2, d3;
-	//~ cout << fixed << setprecision(10);
 	d1=dist(a, b); d2=dist(a, c); d3=dist(b, c);
-	//~ if(a.x == -0.5 && a.y == 1.5){
-		
-		//~ cout << d1 << " d2 " << d2 << " d3 " << d3 << endl; 
-		
-		//~ cout << ((d1*d1)+(d2*d2)-(d3*d3)) << " " << (2*d1*d2) << "  " << ((d1*d1)+(d2*d2)-(d3*d3))/(2*d1*d2) << endl;
-	//~ }
 	float h = ((d1*d1)+(d2*d2)-(d3*d3))/(2*d1*d2);
  	float k = acos(h)*180/pi;
 	return k;
@@ -101,7 +94,7 @@ void proj(line<double>k, Point<double> st, Point<double> &ans){
 int main(){
 	
 	//~ ios_base::sync_with_stdio(false);
-    //~ cin.tie(NULL);
+  //~ cin.tie(NULL);
 	freopen("out", "w", stdout);
 	
 	Point<double>start;
