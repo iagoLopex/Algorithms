@@ -12,7 +12,7 @@ A = 4/3*(sqrt(peri*(peri-a)*(peri-b)*(peri-c)))
 //CENTROID TRIANGLE
 x=(x1+x2+x3)/3, y=(y1+y2+y3)/3
 
-//CENTROD QUADRILATERAL
+//CENTROID QUADRILATERAL
 x=(x1+x2+x3+x4)/4, y=(y1+y2+y3+y4)/4
 
 //ROTATE VECTOR
