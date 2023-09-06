@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 const long double pi = acos(-1.0);
-
 using namespace std;
 
 /*
