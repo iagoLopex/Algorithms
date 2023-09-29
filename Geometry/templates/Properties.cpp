@@ -21,6 +21,9 @@ https://www.youtube.com/watch?v=EZufiIwwqFA
 //Gauss Circle Problem
 find the maximum lattice points of a circle
 
+//Find the Formula of a Sequence
+https://oeis.org
+
 
 
 
