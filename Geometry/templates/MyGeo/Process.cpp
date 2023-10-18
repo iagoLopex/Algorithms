@@ -39,11 +39,35 @@ double PointAng(const Point<double> &a, const Point<double> &b, const Point<doub
 double VectorAng(const Point<double> &a, const Point<double> &b){
 	double ang = ((a.x*b.x +a.y*b.y) /  ( sqrt(a.x*a.x + a.y*a.y) * sqrt(b.x*b.x + b.y*b.y)));
 	cout << "ang " << ang << '\n';
-	return acos(ang);
+	return (acos(ang)*180/pi);
 }
 
 signed main() {
 	
+	///*
+	Point<double> a(5, 0);
+	Point<double> fa(4, 0);
 	
+	Point<double> b(1, 1);
+	Point<double> fb(3, 2);
+	
+	cout << VectorAng(a - fa, b - fb);  //em graus vai dar erro de precisao
+	//*/
+	
+	//~ int n;
+	//~ cin>>n;
+	//~ vector<Point<double>>vec(n);
+	//~ for(int i=0; i<n; i++){
+		//~ cin>>vec[i];
+	//~ }
+	//~ for(int i=0; i<2*n; i++){
+		//~ vec.push_back(vec[i]);
+	//~ }
+	
+	//~ for(int i=0; i<n; i++){
+		//~ int sum = 0;
+		//~ int j = i+1;
+		//~ while(VectorAng(vec[i+1] - vec[i], vec[j+1] - vec[j]) 
+	//~ }
 	
 }
