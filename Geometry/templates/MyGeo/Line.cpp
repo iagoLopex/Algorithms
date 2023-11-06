@@ -38,19 +38,23 @@ public:
 	line(){A = a = B = b = C = 0; }
 	line(F nume, F deno, Point<F> &v){
 		A = deno, B = -nume, C = -(deno * v.x) + (nume * v.y);
-		a = (fabs(B)<eps ? 1.0 : -A/B), b = (fabs(B)<eps ? 0 : -C/B);
+		a = (fabs(B)<EPS ? 1.0 : -A/B), b = (fabs(B)<EPS ? 0 : -C/B);
 	}
 	line(Point<F> &u, Point<F> &v){
 		den = u.x - v.x;
 		num = u.y - v.y;
 		A = num, B = -den, C = -(num * u.x) + (den * u.y);
 		den*=-1;
-		a = (fabs(B)<eps ? 1.0 : -A/B), b = (fabs(B)<eps ? 0 : -C/B);
+		a = (fabs(B)<EPS ? 1.0 : -A/B), b = (fabs(B)<EPS ? 0 : -C/B);
 	}
 	~line(){};
+	
+	bool isIn(const Point<F> &u){ return (A*u.x + B*u.y + C == 0); }
+	
 	friend ostream & operator <<(ostream &out, const line &u){ return out << u.a << "x " << u.b << "\n" << u.A << "x " << u.B << "y " << u.C << " = 0"; }
 };
 
 //-----------------------------------------------finish----------------------------------------------------------//
+
 int main(){
 }
