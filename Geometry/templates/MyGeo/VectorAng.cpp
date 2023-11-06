@@ -13,7 +13,7 @@ double PointAng(const Point<F> &a, const Point<F> &b, const Point<F> &c){//BAO
 }
  
 template<class F>
-double VectorAng(const Point<F> &a, const Point<F> &b){
+double VectorAng(const Point<F> &a, const Point<F> &b){//melhor que o da lei dos cossenos(acima)
 	double ang = ((double)(a.x*b.x +a.y*b.y) /  (double)( sqrt(a.x*a.x + a.y*a.y) * sqrt(b.x*b.x + b.y*b.y)));
 	//~ cout << "ang " << (acos(ang)*180/pi) << '\n';
 	return acos(ang);
